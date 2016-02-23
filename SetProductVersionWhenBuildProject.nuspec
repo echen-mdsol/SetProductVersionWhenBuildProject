@@ -1,0 +1,15 @@
+<?xml version="1.0"?>
+<package >
+  <metadata>
+    <id>SetProductVersionWhenBuildProject</id>
+    <version>1.0.0</version>
+    <authors>jshao@mdsol.com</authors>
+    <owners>Medidata Solutions</owners>
+    <projectUrl>https://github.com/junshao/SetProductVersionWhenBuildProject</projectUrl>
+    <requireLicenseAcceptance>false</requireLicenseAcceptance>
+    <description>Set AssemblyInformationalVersionAttribute in AssemblyInfo.cs when build project.</description>
+    <releaseNotes>First release</releaseNotes>
+    <copyright>Copyright 2016</copyright>
+    <tags>NuGet mdsol create package project build version attribute AssemblyInfo.cs</tags>
+  </metadata>
+</package>
