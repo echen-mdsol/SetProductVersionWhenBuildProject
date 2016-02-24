@@ -5,10 +5,10 @@
     <version>1.0.1</version>
     <authors>jshao@mdsol.com</authors>
     <owners>Medidata Solutions</owners>
-    <iconUrl>https://github.com/junshao/SetProductVersionWhenBuildProject/blob/master/icon.png</iconUrl>
-    <licenseUrl>https://github.com/junshao/SetProductVersionWhenBuildProject/blob/master/LICENSE</licenseUrl>
+    <iconUrl>https://raw.githubusercontent.com/junshao/SetProductVersionWhenBuildProject/master/icon.png</iconUrl>
+    <licenseUrl>https://raw.githubusercontent.com/junshao/SetProductVersionWhenBuildProject/master/LICENSE</licenseUrl>
     <projectUrl>https://github.com/junshao/SetProductVersionWhenBuildProject</projectUrl>
-    <requireLicenseAcceptance>false</requireLicenseAcceptance>
+    <requireLicenseAcceptance>true</requireLicenseAcceptance>
     <description>Set AssemblyInformationalVersionAttribute in AssemblyInfo.cs when build project.</description>
     <releaseNotes>Use postfix '-dirty' if there is uncommitted change.</releaseNotes>
     <copyright>Copyright 2016</copyright>
