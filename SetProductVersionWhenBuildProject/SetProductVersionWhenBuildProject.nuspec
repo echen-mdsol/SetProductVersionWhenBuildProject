@@ -11,7 +11,7 @@
     <requireLicenseAcceptance>true</requireLicenseAcceptance>
     <developmentDependency>true</developmentDependency>
     <description>Set AssemblyInformationalVersionAttribute in AssemblyInfo.cs when build project.</description>
-    <releaseNotes>Make this pakcage a development dependency.</releaseNotes>
+    <releaseNotes>Make this package a development dependency.</releaseNotes>
     <copyright>Copyright 2016</copyright>
     <tags>NuGet mdsol create package project build version attribute AssemblyInfo.cs</tags>
   </metadata>
