@@ -26,18 +26,18 @@ There are only three variables in this configuration file. You can find the usag
 $assemblyInfoFileRelativePath = ""
 
 # Product version value in the dll file property, which is set by AssemblyInformationalVersionAttribute in AssemblyInfo.cs
-$productVersionValue = "$(git log -1 --pretty='%h')$(if($(git status -s)){'-u'}else{''})"
+$productVersionValue = "$(git log -1 --pretty='%h')$(if($(git status -s)){'-dirty'}else{''})"
 
 # If keep below CSharp code in AssemblyInfo.cs after build
 # [assembly: AssemblyInformationalVersion("blah")]
 $keepAssemblyInfoChangeAfterBuild = $false
 ```
 
-By default, the value of `$productVersionValue` will be your current Git commit hash in short format, and with a "-u" postfix if there is any uncommitted change. The AssemblyInfo.cs file will look like
+By default, the value of `$productVersionValue` will be your current Git commit hash in short format, and with a "-dirty" postfix if there is any uncommitted change. The AssemblyInfo.cs file will look like
 ```cs
 [assembly: AssemblyInformationalVersion("613247e")]
 ```
 or below if there is uncommitted change.
 ```cs
-[assembly: AssemblyInformationalVersion("613247e-u")]
+[assembly: AssemblyInformationalVersion("613247e-dirty")]
 ```

@@ -3,7 +3,7 @@
 $assemblyInfoFileRelativePath = ""
 
 # Product version value in the dll file property, which is set by AssemblyInformationalVersionAttribute in AssemblyInfo.cs
-$productVersionValue = "$(git log -1 --pretty='%h')$(if($(git status -s)){'-u'}else{''})"
+$productVersionValue = "$(git log -1 --pretty='%h')$(if($(git status -s)){'-dirty'}else{''})"
 
 # If keep below CSharp code in AssemblyInfo.cs after build
 # [assembly: AssemblyInformationalVersion("blah")]
