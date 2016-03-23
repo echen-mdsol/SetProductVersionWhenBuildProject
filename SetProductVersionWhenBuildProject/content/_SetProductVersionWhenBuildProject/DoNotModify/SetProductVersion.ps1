@@ -25,12 +25,17 @@ if([string]::IsNullOrEmpty($assemblyInfoFileRelativePath)) {
 [string]$assemblyInfoFile = Join-Path -path "$ProjectFilePath\.." -ChildPath $assemblyInfoFileRelativePath
 
 Write-Output "AssemblyInfo.cs path is '$assemblyInfoFile'."
+
+if ($env:BuildRunner -eq 'MyGet') {
+  Write-Output "Using MyGet build runner."  
+  $productVersionValue = $productVersionValueMyGet
+}
+
 Write-Output "ProductVersion value is '$productVersionValue'."
 
-function SetGitHashContent([string]$content, [string] $gitHash){
-  $regexPattern = '\r\n\[assembly: AssemblyInformationalVersion\([^\)]+\)\]'
-  $content = [regex]::replace($content, $regexPattern, '');
-  $content += "`r`n[assembly: AssemblyInformationalVersion(`"$gitHash`")]"
+function SetProductVersion([string]$content, [string] $productVersionValue){
+  $content = [regex]::replace($content, $productVersionPattern, '');
+  $content += "`r`n[assembly: AssemblyInformationalVersion(`"$productVersionValue`")]"
   return $content
 }
 
@@ -38,5 +43,5 @@ $sr = New-Object System.IO.StreamReader($assemblyInfoFile)
 $encoding = $sr.CurrentEncoding
 [string]$content = $sr.ReadToEnd();
 $sr.Close();
-$content = SetGitHashContent $content $productVersionValue
+$content = SetProductVersion $content $productVersionValue
 [System.IO.File]::WriteAllText($assemblyInfoFile, $content, $encoding)
