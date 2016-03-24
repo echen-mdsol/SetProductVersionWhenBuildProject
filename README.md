@@ -33,15 +33,22 @@ $githash = git log -1 --pretty='%h'
 # Product version value in the dll file property, which is set by AssemblyInformationalVersionAttribute in AssemblyInfo.cs
 $productVersionValue = "$githash$(if($(git status -s)){'-dirty'}else{''})"
 
-# Product version value to be used when building in MyGet Build Services
-$productVersionValueMyGet = "$($env:VersionFormat)-build$($env:BuildCounter.PadLeft(4,'0'))-$githash"
+# Product version value using environment variables available when building in MyGet Build Services.
+# http://docs.myget.org/docs/reference/build-services#Available_Environment_Variables
+#
+# Please always PadLeft the build number if you decide to use it,
+# because NuGet versioning system sorts prerelease package in lexicographic ASCII sort order.
+# As a result "1.0.0-build9" will be unexpectedly treated as newer than "1.0.0-build10".
+# But "1.0.0-build0010" will be newer than "1.0.0-build0009".
+$productVersionValueMyGet = "$($env:VersionFormat)-build$("{0:D4}" -f [int]$env:BuildCounter)-$githash"
 
 # If keep below CSharp code in AssemblyInfo.cs after build
 # [assembly: AssemblyInformationalVersion("blah")]
 $keepAssemblyInfoChangeAfterBuild = $false
 
 # Regex pattern for Product Version in AssemblyInfo.cs
-$productVersionPattern = '\s*\[assembly *: *AssemblyInformationalVersion *\(@?"[^"]*"\) *\]'
+$productVersionPattern = '\s*\[assembly\s*:\s*AssemblyInformationalVersion\s*\(@?"[^"]*"\)\s*\]'
+
 
 ```
 
@@ -63,7 +70,7 @@ The default format is "X.Y.Z-Build-hash", wherein "X.Y.Z" is your NuGet package 
 ```
 
 ## Caveats
-1. Always `PadLeft` the build number (prepending "0") if you decide to use it. Because NuGet versioning system sorts prerelease package in lexicographic ASCII sort order. As a result "1.0.0-build9" will be unexpectedly treated as newer than "1.0.0-build10". But "1.0.0-build0010" will be newer than "1.0.0-build0009".
+1. Always pad left the build number (prepending "0") if you decide to use it. Because NuGet versioning system sorts prerelease package in lexicographic ASCII sort order. As a result "1.0.0-build9" will be unexpectedly treated as newer than "1.0.0-build10". But "1.0.0-build0010" will be newer than "1.0.0-build0009".
 2. There is no need to put a `-dirty` flag when integrated with MyGet Build Service. Since the process will always change the AssemblyInfo.cs file and then pollute the local Git repo.
 
 # Acknowledgement
