@@ -3,7 +3,7 @@
   <metadata>
     <id>SetProductVersionWhenBuildProject</id>
     <version>1.0.3</version>
-    <authors>jshao@mdsol.com</authors>
+    <authors>jshao@mdsol.com,echen@mdsol.com</authors>
     <owners>Medidata Solutions</owners>
     <iconUrl>https://raw.githubusercontent.com/junshao/SetProductVersionWhenBuildProject/master/icon.png</iconUrl>
     <licenseUrl>https://raw.githubusercontent.com/junshao/SetProductVersionWhenBuildProject/master/LICENSE</licenseUrl>
@@ -13,6 +13,6 @@
     <description>Set AssemblyInformationalVersionAttribute in AssemblyInfo.cs when build project.</description>
     <releaseNotes>Update for use with MyGet Build Services.</releaseNotes>
     <copyright>Copyright 2016</copyright>
-    <tags>NuGet mdsol create package project build version attribute AssemblyInfo.cs</tags>
+    <tags>NuGet mdsol create package project build version attribute AssemblyInfo.cs. Supports MyGet Build Service integration.</tags>
   </metadata>
 </package>
