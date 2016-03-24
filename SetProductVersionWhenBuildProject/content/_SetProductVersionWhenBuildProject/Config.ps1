@@ -10,7 +10,12 @@ $productVersionValue = "$githash$(if($(git status -s)){'-dirty'}else{''})"
 
 # Product version value using environment variables available when building in MyGet Build Services.
 # http://docs.myget.org/docs/reference/build-services#Available_Environment_Variables
-$productVersionValueMyGet = "$($env:VersionFormat)-build$($env:BuildCounter)-$githash"
+#
+# Please always PadLeft the build number if you decide to use it,
+# because NuGet versioning system sorts prerelease package in lexicographic ASCII sort order.
+# As a result "1.0.0-build9" will be unexpectedly treated as newer than "1.0.0-build10".
+# But "1.0.0-build0010" will be newer than "1.0.0-build0009".
+$productVersionValueMyGet = "$($env:VersionFormat)-build$($env:BuildCounter.PadLeft(4,'0'))-$githash"
 
 # If keep below CSharp code in AssemblyInfo.cs after build
 # [assembly: AssemblyInformationalVersion("blah")]
