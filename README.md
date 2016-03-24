@@ -56,5 +56,15 @@ or below if there is uncommitted change.
 
 If MyGet Build Services is used, then the AssemblyInformationalVersion will be set to `$productVersionValueMyGet`.
 
+# Integration with MyGet Build Service
+This NuGet package can be used to assist publishing your NuGet package with MyGet Build Service. When MyGet Build Service triggers the build process, the product version will be set with the value specified by `$productVersionValueMyGet` in the Config.ps1.
+
+The default format is "X.Y.Z-Build-hash", wherein "X.Y.Z" is your NuGet package version (you can specify in MyGet Build Service configuration), "Build" is the automatically incrementing build number by MyGet, and "hash" is the value of `$githash`. Refer to http://docs.myget.org/docs/reference/build-services#Available_Environment_Variables for MyGet Build Service environment variables. Below is an example.
+```cs
+[assembly: AssemblyInformationalVersion("1.0.0-build15-613247e")]
+```
+
+Please notice that, as the process by MyGet Build Service is a automatic process, there is no need put a `-dirty` flag. Since the process will always change the AssemblyInfo.cs file and as a result will pollute the local Git repo.
+
 # Acknowledgement
 This project is inspired by https://www.nuget.org/packages/CreateNewNuGetPackageFromProjectAfterEachBuild/
