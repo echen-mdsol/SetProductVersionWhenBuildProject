@@ -34,7 +34,7 @@ $githash = git log -1 --pretty='%h'
 $productVersionValue = "$githash$(if($(git status -s)){'-dirty'}else{''})"
 
 # Product version value to be used when building in MyGet Build Services
-$productVersionValueMyGet = "$($env:VersionFormat)-build$($env:BuildCounter)-$githash"
+$productVersionValueMyGet = "$($env:VersionFormat)-build$($env:BuildCounter.PadLeft(4,'0'))-$githash"
 
 # If keep below CSharp code in AssemblyInfo.cs after build
 # [assembly: AssemblyInformationalVersion("blah")]
@@ -54,7 +54,17 @@ or below if there is uncommitted change.
 [assembly: AssemblyInformationalVersion("613247e-dirty")]
 ```
 
-If MyGet Build Services is used, then the AssemblyInformationalVersion will be set to `$productVersionValueMyGet`.
+# Integration with MyGet Build Service
+This NuGet package can be used to assist publishing your NuGet package with MyGet Build Service. When MyGet Build Service triggers the build process, the product version will be set with the value specified by `$productVersionValueMyGet` in the Config.ps1.
+
+The default format is "X.Y.Z-Build-hash", wherein "X.Y.Z" is your NuGet package version (you can specify in MyGet Build Service configuration), "Build" is the automatically incrementing build number by MyGet <sup>See caveat 1</sup>, and "hash" is the value of `$githash`. Refer to http://docs.myget.org/docs/reference/build-services#Available_Environment_Variables for MyGet Build Service environment variables. Below is an example.
+```cs
+[assembly: AssemblyInformationalVersion("1.0.0-build0001-613247e")]
+```
+
+## Caveats
+1. Always `PadLeft` the build number (prepending "0") if you decide to use it. Because NuGet versioning system sorts prerelease package in lexicographic ASCII sort order. As a result "1.0.0-build9" will be unexpectedly treated as newer than "1.0.0-build10". But "1.0.0-build0010" will be newer than "1.0.0-build0009".
+2. There is no need to put a `-dirty` flag when integrated with MyGet Build Service. Since the process will always change the AssemblyInfo.cs file and then pollute the local Git repo.
 
 # Acknowledgement
 This project is inspired by https://www.nuget.org/packages/CreateNewNuGetPackageFromProjectAfterEachBuild/
