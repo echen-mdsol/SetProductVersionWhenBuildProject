@@ -54,8 +54,6 @@ or below if there is uncommitted change.
 [assembly: AssemblyInformationalVersion("613247e-dirty")]
 ```
 
-If MyGet Build Services is used, then the AssemblyInformationalVersion will be set to `$productVersionValueMyGet`.
-
 # Integration with MyGet Build Service
 This NuGet package can be used to assist publishing your NuGet package with MyGet Build Service. When MyGet Build Service triggers the build process, the product version will be set with the value specified by `$productVersionValueMyGet` in the Config.ps1.
 
