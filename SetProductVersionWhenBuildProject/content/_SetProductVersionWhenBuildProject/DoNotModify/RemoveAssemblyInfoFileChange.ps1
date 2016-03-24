@@ -34,8 +34,7 @@ $sr = New-Object System.IO.StreamReader($assemblyInfoFile)
 $encoding = $sr.CurrentEncoding
 [string]$content = $sr.ReadToEnd();
 $sr.Close();
-$regexPattern = '\r\n\[assembly: AssemblyInformationalVersion\([^\)]+\)\]'
-$content = [regex]::replace($content, $regexPattern, '');
+$content = [regex]::replace($content, $productVersionPattern, '');
 [System.IO.File]::WriteAllText($assemblyInfoFile, $content, $encoding)
 
 Write-Output "Removed AssemblyInformationalVersion attribute from '$assemblyInfoFile'."

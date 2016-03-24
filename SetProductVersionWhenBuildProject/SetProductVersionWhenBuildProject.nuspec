@@ -2,7 +2,7 @@
 <package >
   <metadata>
     <id>SetProductVersionWhenBuildProject</id>
-    <version>1.0.2</version>
+    <version>1.0.3</version>
     <authors>jshao@mdsol.com</authors>
     <owners>Medidata Solutions</owners>
     <iconUrl>https://raw.githubusercontent.com/junshao/SetProductVersionWhenBuildProject/master/icon.png</iconUrl>
@@ -11,7 +11,7 @@
     <requireLicenseAcceptance>true</requireLicenseAcceptance>
     <developmentDependency>true</developmentDependency>
     <description>Set AssemblyInformationalVersionAttribute in AssemblyInfo.cs when build project.</description>
-    <releaseNotes>Make this package a development dependency.</releaseNotes>
+    <releaseNotes>Update for use with MyGet Build Services.</releaseNotes>
     <copyright>Copyright 2016</copyright>
     <tags>NuGet mdsol create package project build version attribute AssemblyInfo.cs</tags>
   </metadata>
