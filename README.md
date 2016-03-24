@@ -62,7 +62,7 @@ The default format is "X.Y.Z-Build-hash", wherein "X.Y.Z" is your NuGet package 
 [assembly: AssemblyInformationalVersion("1.0.0-build15-613247e")]
 ```
 
-Please notice that, as the process by MyGet Build Service is a automatic process, there is no need put a `-dirty` flag. Since the process will always change the AssemblyInfo.cs file and as a result will pollute the local Git repo.
+Please notice that, as the process by MyGet Build Service is an automatic process, there is no need to put a `-dirty` flag. Since the process will always change the AssemblyInfo.cs file and as a result will pollute the local Git repo.
 
 # Acknowledgement
 This project is inspired by https://www.nuget.org/packages/CreateNewNuGetPackageFromProjectAfterEachBuild/
